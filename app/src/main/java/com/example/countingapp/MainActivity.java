@@ -58,13 +58,17 @@ public class MainActivity extends AppCompatActivity {
 
                 }else{
                     // If minus is clicked when zero
-                    background.setBackgroundColor(Color.parseColor("#000000"));
-                    counter.setTextColor(Color.parseColor("#ffffff"));
+                    background.setBackgroundColor(Color.parseColor("#ffffff"));
+                    counter.setTextColor(Color.parseColor("#000000"));
+                    plus.setTextColor(Color.parseColor("#000000"));
+                    minus.setTextColor(Color.parseColor("#000000"));
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            background.setBackgroundColor(Color.WHITE);
-                            counter.setTextColor(Color.parseColor("#000000"));
+                            background.setBackgroundColor(Color.BLACK);
+                            counter.setTextColor(Color.parseColor("#ffffff"));
+                            plus.setTextColor(Color.parseColor("#ffffff"));
+                            minus.setTextColor(Color.parseColor("#ffffff"));
                         }
                     }, 200);
                 }
@@ -77,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        background.setBackgroundColor(Color.WHITE);
+                        background.setBackgroundColor(Color.BLACK);
                     }
-                }, 200);
+                }, 175);
     }
 
     }
