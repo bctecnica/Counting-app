@@ -6,17 +6,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     // Initializes
     public ConstraintLayout background;
-    private TextView counter;
     private Button plus;
     private Button minus;
+    private EditText counter;
     final Handler handler = new Handler();
     int currentCount;
 
@@ -26,10 +30,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // ID links
-        counter = findViewById(R.id.count);
+
         plus = findViewById(R.id.plusButton);
         minus = findViewById(R.id.minusButton);
         background = findViewById(R.id.layout);
+        counter = findViewById(R.id.Number);
 
         // --Plus button--
         // Increases the count by one per click
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentCount = Integer.parseInt(counter.getText().toString());
                 currentCount++;
                 counter.setText(currentCount + "");
                 background.setBackgroundColor(Color.parseColor("#51b46d"));
@@ -51,9 +57,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(currentCount > 0) {
+                    currentCount = Integer.parseInt(counter.getText().toString());
                     currentCount--;
                     counter.setText(currentCount + "");
-                   background.setBackgroundColor(Color.parseColor("#e15258"));
+                   background.setBackgroundColor(Color.parseColor("#ff5147"));
                    flash();
 
                 }else{
