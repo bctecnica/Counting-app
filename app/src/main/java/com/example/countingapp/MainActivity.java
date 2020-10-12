@@ -3,6 +3,7 @@ package com.example.countingapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -25,11 +26,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // ID links
-
         plus = findViewById(R.id.plusButton);
         minus = findViewById(R.id.minusButton);
         background = findViewById(R.id.layout);
         counter = findViewById(R.id.Number);
+
+        // sound resources
+        final MediaPlayer pop = MediaPlayer.create(this,R.raw.zapsplat_cartoon_bubble_pop_003_40275);
+        final MediaPlayer suck = MediaPlayer.create(this,R.raw.zapsplat_cartoon_suck_tongue_mouth_designed_008_46688);
 
         // --Plus button--
         // Increases the count by one but stops the count at 9999
@@ -45,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     // If plus is clicked at 9999 limit
                     currentCount++;
+                    if(pop != null) {
+                        pop.start();
+                    }
                     counter.setText(currentCount + "");
                     background.setBackgroundColor(Color.parseColor("#51b46d"));
                     flash();
@@ -64,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
                     numberLimitFlash();
                 }else{
                     currentCount--;
+                    if(suck != null) {
+                        suck.start();
+                    }
                     counter.setText(currentCount + "");
                     background.setBackgroundColor(Color.parseColor("#ff5147"));
                     flash();
