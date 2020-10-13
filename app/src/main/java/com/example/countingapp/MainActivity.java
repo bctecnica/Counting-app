@@ -1,6 +1,7 @@
 package com.example.countingapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.graphics.Color;
@@ -17,12 +18,17 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     // Initializes
+    // Main activity
     public ConstraintLayout background;
     private Button plus;
     private Button minus;
     private EditText counter;
     final Handler handler = new Handler();
     int currentCount;
+    // Popup window
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private Button popupClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +99,27 @@ public class MainActivity extends AppCompatActivity {
     // Opens info pane when icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        createInfoPopupWindow();
         Toast.makeText(getApplicationContext(),"info button clicked",Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
+    }
+
+    // Creates popup window
+    public void createInfoPopupWindow(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View infoPopup = getLayoutInflater().inflate(R.layout.popup, null);
+        popupClose = infoPopup.findViewById(R.id.closePopupButton);
+
+        dialogBuilder.setView(infoPopup);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        popupClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
     // Used to flash white when user hits min(0)/max(9999) limit
