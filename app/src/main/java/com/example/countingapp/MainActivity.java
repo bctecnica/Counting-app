@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Hides action bar in landscape orientation
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             getSupportActionBar().hide();
         }
@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         createInfoPopupWindow();
-        Toast.makeText(getApplicationContext(),"info button clicked",Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
     }
 
