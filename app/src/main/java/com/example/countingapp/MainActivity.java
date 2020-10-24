@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentCount = Integer.parseInt(counter.getText().toString());
+                checkUserInput();
 
                 if(currentCount == 9999) {
                     numberLimitFlash();
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentCount = Integer.parseInt(counter.getText().toString());
+                checkUserInput();
 
                 if(currentCount == 0) {
                     numberLimitFlash();
@@ -152,6 +151,16 @@ public class MainActivity extends AppCompatActivity {
                         background.setBackgroundColor(Color.BLACK);
                     }
                 }, 175);
+    }
+
+    // Used to make user input isn't empty then converts to an int
+    private void checkUserInput() {
+        String userInput = counter.getText().toString();
+        if (userInput.isEmpty()) {
+            counter.setText("0");
+        }else {
+            currentCount = Integer.parseInt(counter.getText().toString());
+        }
     }
 
     }
