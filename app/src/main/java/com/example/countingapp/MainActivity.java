@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     currentCount++;
                     pop.start();
                     counter.setText(currentCount + "");
-                    background.setBackgroundColor(Color.parseColor("#51b46d"));
+                    background.setBackgroundResource(R.drawable.plus_flash);
                     flash();
                 }
             }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     currentCount--;
                     suck.start();
                     counter.setText(currentCount + "");
-                    background.setBackgroundColor(Color.parseColor("#ff5147"));
+                    background.setBackgroundResource(R.drawable.minus_flash);
                     flash();
                 }
             }
@@ -156,9 +156,9 @@ public class MainActivity extends AppCompatActivity {
     // Used to make sure user input isn't empty then converts to an int and clears focus
     private void checkUserInput() {
         String userInput = counter.getText().toString();
-        if (userInput.isEmpty()) {
-            counter.setText("0");
-        }else {
+        if(userInput.equals("")) {
+            currentCount = 0;
+        }else{
             currentCount = Integer.parseInt(counter.getText().toString());
         }
         counter.clearFocus();
