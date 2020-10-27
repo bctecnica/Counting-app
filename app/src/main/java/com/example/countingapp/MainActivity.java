@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 }, 175);
     }
 
-    // Used to make user input isn't empty then converts to an int
+    // Used to make sure user input isn't empty then converts to an int and clears focus
     private void checkUserInput() {
         String userInput = counter.getText().toString();
         if (userInput.isEmpty()) {
@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
         }else {
             currentCount = Integer.parseInt(counter.getText().toString());
         }
+        counter.clearFocus();
     }
 
     }
