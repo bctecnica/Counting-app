@@ -38,17 +38,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Hides action bar in landscape orientation
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Objects.requireNonNull(getSupportActionBar()).hide();
-        }
-
+        
         // ID links
         plus = findViewById(R.id.plusButton);
         minus = findViewById(R.id.minusButton);
         background = findViewById(R.id.layout);
         counter = findViewById(R.id.Number);
+
+        // Creates full screen mode when device is in landscape orientation
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            View overlay = background;
+
+            overlay.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN);
+            Objects.requireNonNull(getSupportActionBar()).hide();
+        }
+
 
         // sound resources
         final MediaPlayer pop = MediaPlayer.create(this,R.raw.zapsplat_cartoon_bubble_pop_003_40275);
