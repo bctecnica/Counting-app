@@ -1,10 +1,10 @@
 package com.example.countingapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -16,49 +16,39 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     // Initializes
-    // Main activity
     public ConstraintLayout background;
     private Button plus;
     private Button minus;
     private EditText counter;
     final Handler handler = new Handler();
     int currentCount;
-    // Popup window
-    private AlertDialog.Builder dialogBuilder;
-    private AlertDialog dialog;
-    private Button popupClose;
+    int totalCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         // ID links
         plus = findViewById(R.id.plusButton);
         minus = findViewById(R.id.minusButton);
         background = findViewById(R.id.layout);
         counter = findViewById(R.id.Number);
 
-        // Creates full screen mode when device is in landscape orientation
+        // Hides action bar when device is in landscape orientation
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            View overlay = background;
-
-            overlay.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN);
             Objects.requireNonNull(getSupportActionBar()).hide();
         }
 
 
         // sound resources
-        final MediaPlayer pop = MediaPlayer.create(this,R.raw.zapsplat_cartoon_bubble_pop_003_40275);
-        final MediaPlayer suck = MediaPlayer.create(this,R.raw.zapsplat_cartoon_bubble_pop_006_40278);
+        final MediaPlayer popSound = MediaPlayer.create(this,R.raw.zapsplat_cartoon_bubble_pop_003_40275);
+        final MediaPlayer suckSound = MediaPlayer.create(this,R.raw.zapsplat_cartoon_bubble_pop_006_40278);
 
         // --Plus button--
         // Increases the count by one but stops the count at 9999
@@ -73,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     // If plus is clicked at 9999 limit
                     currentCount++;
-                    pop.start();
+                    totalCount++;
+                    popSound.start();
                     counter.setText(currentCount + "");
                     background.setBackgroundResource(R.drawable.plus_flash);
                     flash();
@@ -93,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     numberLimitFlash();
                 }else{
                     currentCount--;
-                    suck.start();
+                    suckSound.start();
                     counter.setText(currentCount + "");
                     background.setBackgroundResource(R.drawable.minus_flash);
                     flash();
@@ -111,29 +102,12 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // Opens info pane when icon is clicked
+    // Opens info pane when action bar icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        createInfoPopupWindow();
+        Intent i = new Intent(getApplicationContext(), PopActivity.class);
+        startActivity(i);
         return super.onOptionsItemSelected(item);
-    }
-
-    // Creates popup window
-    public void createInfoPopupWindow(){
-        dialogBuilder = new AlertDialog.Builder(this);
-        final View infoPopup = getLayoutInflater().inflate(R.layout.popup, null);
-        popupClose = infoPopup.findViewById(R.id.closePopupButton);
-
-        dialogBuilder.setView(infoPopup);
-        dialog = dialogBuilder.create();
-        dialog.show();
-
-        popupClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
     }
 
     // Used to flash white when user hits min(0)/max(9999) limit
