@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -26,13 +27,21 @@ public class MainActivity extends AppCompatActivity {
     private Button minus;
     private EditText counter;
     final Handler handler = new Handler();
-    int currentCount;
-    int totalCount;
-
+    private int currentCount;
+    private int totalCount;
+    private SharedPreferences.Editor editor;
+    private static final String PREFS_FILE = "com.example.countingapp.preferences";
+    private static final String KEY_TOTALCOUNT = "KEY_TOTALCOUNT";
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Restores total count variable 
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        totalCount = sharedPreferences.getInt(KEY_TOTALCOUNT, 0);
 
         // ID links
         plus = findViewById(R.id.plusButton);
@@ -106,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent i = new Intent(getApplicationContext(), PopActivity.class);
+        i.putExtra("TOTAL_COUNT", totalCount);
         startActivity(i);
         return super.onOptionsItemSelected(item);
     }
@@ -149,6 +159,15 @@ public class MainActivity extends AppCompatActivity {
             currentCount = Integer.parseInt(counter.getText().toString());
         }
         counter.clearFocus();
+    }
+
+    // Saves the total count when app is closed or user changes orientation
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        editor.putInt(KEY_TOTALCOUNT, totalCount);
+        editor.apply();
     }
 
     }

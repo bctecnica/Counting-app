@@ -19,10 +19,20 @@ public class PopActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop);
 
-        // get total number from main and set it to total on pop up
+        // gets total number from main and set it to total on pop up
         total = findViewById(R.id.totalCounter);
-        total.setText("new number");
+        int totalPassed = getIntent().getIntExtra("TOTAL_COUNT",0);
+        total.setText(""+ totalPassed);
 
+        // Used to clear total count when tapped
+        total.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        // Close button
         closeBtn = findViewById(R.id.closeButton);
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
