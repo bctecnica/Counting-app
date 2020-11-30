@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             Objects.requireNonNull(getSupportActionBar()).hide();
         }
 
-
         // sound resources
         final MediaPlayer popSound = MediaPlayer.create(this,R.raw.zapsplat_cartoon_bubble_pop_003_40275);
         final MediaPlayer suckSound = MediaPlayer.create(this,R.raw.zapsplat_cartoon_bubble_pop_006_40278);
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent i = new Intent(getApplicationContext(), PopActivity.class);
         i.putExtra("TOTAL_COUNT", totalCount);
-        startActivity(i);
+        startActivityForResult(i,1);
         return super.onOptionsItemSelected(item);
     }
 
@@ -170,4 +169,14 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    // Clears total count if user resets it
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                totalCount = data.getIntExtra("total_cleared", 0);
+            }
+        }
     }
+
+}

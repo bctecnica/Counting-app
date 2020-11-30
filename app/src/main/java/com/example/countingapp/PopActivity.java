@@ -1,6 +1,7 @@
 package com.example.countingapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -28,7 +29,10 @@ public class PopActivity extends Activity {
         total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                total.setText("0");
+                Intent intent = new Intent();
+                intent.putExtra("total_cleared", 0);
+                setResult(RESULT_OK, intent);
             }
         });
 
