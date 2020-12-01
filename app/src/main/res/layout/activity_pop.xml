@@ -7,23 +7,14 @@
     android:background="@drawable/popup_border"
     tools:context=".PopActivity">
 
-    <Button
-        android:id="@+id/closeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Close"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="286dp"
-        android:layout_height="48dp"
+        android:id="@+id/totalCounterInstructions"
+        android:layout_width="287dp"
+        android:layout_height="31dp"
         android:gravity="center"
         android:text="@string/to_clear"
         android:textColor="#FFFFFF"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,13 +22,14 @@
 
     <EditText
         android:id="@+id/totalCounter"
-        android:layout_width="125dp"
+        android:layout_width="131dp"
         android:layout_height="56dp"
+        android:layout_marginTop="5dp"
         android:editable="false"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:text="100"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,48 +39,83 @@
         android:id="@+id/totalCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Total count:"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="146dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="how to use app"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
         android:id="@+id/textView3"
-        android:layout_width="135dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="208dp"
+        android:layout_height="99dp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
-        android:text="E-mail"
+        android:text="@string/e_mail"
         android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/topPopupDivider" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="Liecencing"
+        android:text="Sounds by:"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/soundLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/soundLogo"
+        android:layout_width="180dp"
+        android:layout_height="63dp"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/zap_splat_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/topPopupDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalCounterInstructions" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/emailButton"
+        style="@android:style/Widget.DeviceDefault.ImageButton"
+        android:layout_width="79dp"
+        android:layout_height="45dp"
+        android:background="@android:color/background_dark"
+        android:src="@android:drawable/ic_dialog_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

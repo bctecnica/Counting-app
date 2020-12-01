@@ -7,21 +7,24 @@ import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class PopActivity extends Activity {
 
-    Button closeBtn;
     EditText total;
+    ImageButton emailButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop);
 
-        // gets total number from main and set it to total on pop up
+        emailButton = findViewById(R.id.emailButton);
         total = findViewById(R.id.totalCounter);
+
+        // gets total number from main and set it to total on pop up
         int totalPassed = getIntent().getIntExtra("TOTAL_COUNT",0);
         total.setText(""+ totalPassed);
 
@@ -36,12 +39,19 @@ public class PopActivity extends Activity {
             }
         });
 
-        // Close button
-        closeBtn = findViewById(R.id.closeButton);
-        closeBtn.setOnClickListener(new View.OnClickListener() {
+        // composes email to send to me from user with there suggestions
+        emailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"recipient@example.com"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Counting app");
+                try {
+                    startActivity(Intent.createChooser(i, "Send e-mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(PopActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

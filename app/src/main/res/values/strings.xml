@@ -3,5 +3,6 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="zero">0</string>
-    <string name="to_clear">Double tap the total count to reset it</string>
+    <string name="to_clear">Double tap to reset total count </string>
+    <string name="e_mail">Found a bug or have an app suggestion: \n \n \n let us know</string>
 </resources>
