@@ -45,7 +45,7 @@ public class PopActivity extends Activity {
             public void onClick(View view) {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"recipient@example.com"});
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"bctecnica@gmail.com"});
                 i.putExtra(Intent.EXTRA_SUBJECT, "Counting app");
                 try {
                     startActivity(Intent.createChooser(i, "Send e-mail..."));

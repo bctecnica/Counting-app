@@ -17,6 +17,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
     final Handler handler = new Handler();
     private int currentCount;
     private int totalCount;
+    private int adCount;
     private SharedPreferences.Editor editor;
     private static final String PREFS_FILE = "com.example.countingapp.preferences";
     private static final String KEY_TOTALCOUNT = "KEY_TOTALCOUNT";
+    private InterstitialAd mInterstitialAd;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,27 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         totalCount = sharedPreferences.getInt(KEY_TOTALCOUNT, 0);
+
+        // Advertising set up
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        // Loads initial ad
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-5497069649516082/6272503968");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        // Sets up next ad to play after the initial one is closed
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mInterstitialAd.loadAd(adRequest);
+            }
+        });
 
         // ID links
         plus = findViewById(R.id.plusButton);
@@ -65,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkUserInput();
+                adCheck();
 
                 if(currentCount == 9999) {
                     numberLimitFlash();
@@ -87,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkUserInput();
+                adCheck();
 
                 if(currentCount == 0) {
                     numberLimitFlash();
@@ -158,6 +190,17 @@ public class MainActivity extends AppCompatActivity {
             currentCount = Integer.parseInt(counter.getText().toString());
         }
         counter.clearFocus();
+    }
+
+    // Launches ad popup
+    private void adCheck(){
+        adCount++;
+        if(adCount == 10){
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+                adCount = 0;
+            }
+        }
     }
 
     // Saves the total count when app is closed or user changes orientation
