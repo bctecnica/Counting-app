@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,115 +7,114 @@
     android:background="@drawable/popup_border"
     tools:context=".PopActivity">
 
-    <TextView
-        android:id="@+id/totalCounterInstructions"
-        android:layout_width="287dp"
-        android:layout_height="31dp"
-        android:gravity="center"
-        android:text="@string/to_clear"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalCounter" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/totalCounter"
-        android:layout_width="131dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="5dp"
-        android:editable="false"
-        android:gravity="center"
-        android:text="100"
-        android:textColor="#FFFFFF"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalCount" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/totalCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Total count:"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/totalCount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="Total count:"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="208dp"
-        android:layout_height="99dp"
-        android:layout_marginTop="60dp"
-        android:gravity="center"
-        android:text="@string/e_mail"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topPopupDivider" />
+            <EditText
+                android:id="@+id/totalCounter"
+                android:layout_width="fill_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="5dp"
+                android:editable="false"
+                android:gravity="center"
+                android:text="100"
+                android:textColor="#FFFFFF"
+                android:textSize="35sp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Sounds by:"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/soundLogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/totalCounterInstructions"
+                android:layout_width="fill_parent"
+                android:layout_height="31dp"
+                android:gravity="center"
+                android:text="@string/to_clear"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
 
-    <ImageView
-        android:id="@+id/soundLogo"
-        android:layout_width="180dp"
-        android:layout_height="63dp"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/zap_splat_logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+            <View
+                android:id="@+id/topPopupDivider"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="@android:color/darker_gray" />
 
-    <View
-        android:id="@+id/topPopupDivider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalCounterInstructions" />
+            <TextView
+                android:id="@+id/supportText"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/e_mail"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
 
-    <View
-        android:id="@+id/divider4"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="20dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <ImageButton
+                android:id="@+id/emailButton"
+                style="@android:style/Widget.DeviceDefault.ImageButton"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/background_dark"
+                android:src="@android:drawable/ic_dialog_email" />
 
-    <ImageButton
-        android:id="@+id/emailButton"
-        style="@android:style/Widget.DeviceDefault.ImageButton"
-        android:layout_width="79dp"
-        android:layout_height="45dp"
-        android:background="@android:color/background_dark"
-        android:src="@android:drawable/ic_dialog_email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <View
+                android:id="@+id/lowerDivider"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/darker_gray" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/soundBy"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Sounds by:"
+                android:textColor="#FFFFFF" />
+
+            <ImageView
+                android:id="@+id/soundLogo"
+                android:layout_width="fill_parent"
+                android:layout_height="63dp"
+                android:src="@drawable/zap_splat_logo" />
+
+            <TextView
+                android:id="@+id/company"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:gravity="center"
+                android:text="@string/bctecnica"
+                android:textColor="#FFFFFF" />
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

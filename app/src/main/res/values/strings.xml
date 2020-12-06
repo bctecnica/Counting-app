@@ -4,5 +4,6 @@
     <string name="minus">-</string>
     <string name="zero">0</string>
     <string name="to_clear">Double tap to reset total count </string>
-    <string name="e_mail">Found a bug or have an app suggestion: \n \n \n let us know</string>
+    <string name="e_mail">Found a bug or have an app suggestion: \n </string>
+    <string name="bctecnica">BCTecnica &#169;</string>
 </resources>
