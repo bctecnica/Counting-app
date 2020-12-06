@@ -9,9 +9,6 @@
         android:roundIcon="@drawable/counting_app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5497069649516082~9563854043"/>
 
         <activity
             android:name=".PopActivity"
