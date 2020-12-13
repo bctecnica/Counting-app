@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.countingapp">
+    package="com.bctecnica.countingapp">
 
     <application
         android:allowBackup="true"
@@ -11,9 +11,9 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".PopActivity"
+            android:name="com.bctecnica.countingapp.PopActivity"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.bctecnica.countingapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

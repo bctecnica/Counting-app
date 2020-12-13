@@ -1,4 +1,4 @@
-package com.example.countingapp;
+package com.bctecnica.countingapp;
 
 import org.junit.Test;
 

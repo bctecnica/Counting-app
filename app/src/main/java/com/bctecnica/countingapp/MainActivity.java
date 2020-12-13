@@ -1,4 +1,4 @@
-package com.example.countingapp;
+package com.bctecnica.countingapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
